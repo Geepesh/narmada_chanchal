@@ -1,0 +1,37 @@
+<style>
+  .myInp {
+background-image: url('/css/searchicon.png');
+background-position: 10px 10px;
+background-repeat: no-repeat;
+width: 100%;
+font-size: 16px;
+padding: 12px 20px 12px 40px;
+border: 1px solid #ddd;
+margin-bottom: 12px;
+border-radius: 20px;
+}
+button{
+  width : 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+border: 1px solid #ddd;
+margin-bottom: 12px;
+border-radius: 20px;
+
+}
+</style>
+<form action="/s" method="post">
+  <input class="myInp" placeholder="Name" type="text" name="name">
+  <input class="myInp" placeholder="Contact No." type="text" name="number">
+  <input class="myInp" placeholder="Ammount type="text" name="ammount">
+  <input class="myInp" type="date" name="date">
+  <input class="myInp" placeholder="address" type="text" name="address">
+  <select class="myInp" name="class">
+    <option value="ps">ps</option>
+    <option value="ms">ms</option>
+    <option value="office">office</option>
+    <option value="hs">hs</option>
+    <option value="local">local</option>
+  </select>
+  <button>></button>
+</form>
