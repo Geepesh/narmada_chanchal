@@ -17,8 +17,19 @@ app.use(bp.urlencoded({
 
 app.set('view engine','ejs')
 
+app.get('/',(req,res)=>{
+  res.send(`<form method="post" action="/" id="form">
+  </form>
+  <script>
+  let p = prompt('password')
+  if(p === "${process.env.PASS}"){
+    document.getElementById('form').submit();
+  }else{
+    document.write('YOUR PASSWORD IS WRONG <br/> CONTACT WEBSITE BUILDER TO ACCESS DATA')
+  }</script>`)
+})
 
-app.get('/', (req, res) => {
+app.post('/', (req, res) => {
   db.find().then((dta)=>{
     res.render("home",{
       dta : dta
@@ -49,8 +60,18 @@ app.get('/delete_:id',(req,res)=>{
     res.redirect('/')
   })
 })
-
-app.get('/main', (req, res) => {
+app.get('/main',(req,res)=>{
+  res.send(`<form method="post" action="/main" id="form">
+  </form>
+  <script>
+  let p = prompt('password')
+  if(p === "${process.env.PASS}"){
+    document.getElementById('form').submit();
+  }else{
+    document.write('YOUR PASSWORD IS WRONG <br/> CONTACT WEBSITE BUILDER TO ACCESS DATA')
+  }</script>`)
+})
+app.post('/main', (req, res) => {
     res.render('main')
 })
    
