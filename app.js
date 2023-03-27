@@ -1,6 +1,6 @@
 const app = require('express')();
 const express = require('express');
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4002;
 const mongoose = require('mongoose')
 const bp = require('body-parser')
 const db = require('./db/modal_')
@@ -17,15 +17,45 @@ app.use(bp.urlencoded({
 
 app.set('view engine','ejs')
 
+app.get('/',(req,res)=>{
+  res.send(`
+  <style>
+  .myInp {
+    background-image: url('/css/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    border-radius: 20px;
+    }
+    #btn{
+      width : 100%;
+      font-size: 16px;
+      padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    border-radius: 20px;
+    
+    }</style><form method="post" action="/" id="form">
+  <input class="myInp" type="text" placeholder="Admin Password" name="p">
+  <input id="btn" type="submit" value=">">
+  </form>
+  `)
+})
 
-
-app.get('/', (req, res) => {
+app.post('/', (req, res) => {
+  if(req.body.p === process.env.PASS){
   db.find().then((dta)=>{
     res.render("home",{
       dta : dta
     })
     console.log(dta)
-  })
+  })}else{
+    res.send('<h1><b>YOUR PASSWORD IS WRONG <br/> CONTACT WEBSITE BUILDER TO ACCESS DATA</b></h1>')
+  }
 })
 
 app.get('/update_:id',(req,res)=>{
@@ -50,9 +80,40 @@ app.get('/delete_:id',(req,res)=>{
     res.redirect('/')
   })
 })
-
-app.get('/main', (req, res) => {
+app.get('/main',(req,res)=>{
+  res.send(`
+  <style>
+  .myInp {
+    background-image: url('/css/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    border-radius: 20px;
+    }
+    #btn{
+      width : 100%;
+      font-size: 16px;
+      padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    border-radius: 20px;
+    
+    }</style>
+  <form method="post" action="/main" id="form">
+  <input type="text" class="myInp" name="p" placeholder="Admin Password">
+  <input type="submit" id="btn" value=">">
+  </form>`)
+})
+app.post('/main', (req, res) => {
+  if(req.body.p === process.env.PASS){
     res.render('main')
+  }else{
+    res.send('<h1><b>YOUR PASSWORD IS WRONG <br/> CONTACT WEBSITE BUILDER TO ACCESS DATA</b></h1>')
+  }
 })
    
 
