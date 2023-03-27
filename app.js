@@ -54,7 +54,7 @@ app.post('/', (req, res) => {
     })
     console.log(dta)
   })}else{
-    res.send('<h1><b>YOUR PASSWORD IS WRONG <br/> CONTACT WEBSITE BUILDER TO ACCESS DATA</b></h1>')
+    res.send('<h2><b><a href="/"><BACK TO RE_ENTER ADMIN PASSWORD</a></b></h2> <h1><b>YOUR PASSWORD IS WRONG <br/> CONTACT WEBSITE BUILDER TO ACCESS DATA</b></h1>')
   }
 })
 
@@ -112,7 +112,7 @@ app.post('/main', (req, res) => {
   if(req.body.p === process.env.PASS){
     res.render('main')
   }else{
-    res.send('<h1><b>YOUR PASSWORD IS WRONG <br/> CONTACT WEBSITE BUILDER TO ACCESS DATA</b></h1>')
+    res.send('<h2><b><a href="/main"><BACK TO RE_ENTER ADMIN PASSWORD</a></b></h2> <h1><b>YOUR PASSWORD IS WRONG <br/> CONTACT WEBSITE BUILDER TO ACCESS DATA</b></h1>')
   }
 })
    
